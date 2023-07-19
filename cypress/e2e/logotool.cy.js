@@ -1,0 +1,28 @@
+it.only('login test', function(){
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from failing the test
+    return false
+  })
+  cy.viewport(1920, 1080)
+  cy.visit("https://uat.pfconcept.com/en_nl/")
+  cy.xpath('//ul[@class="account-nav "]/li/a').click()
+  cy.get('#email').click().type('logotooltest@javra.com')
+  cy.get('#pass').click().type('PfConcept2@18!@lt')
+  cy.get('#send2').click()
+  cy.get('#search').click().type("10050800")
+  cy.xpath('//div[@class="actions"]/button').click()
+  cy.wait(20000)
+  cy.xpath('//div[@class="quantity-tab-wrap"]/table/tbody/tr[2]/td[5]/input').click().type('1')
+  cy.xpath('//div[@class="footer-actions select-printing"]/button[1]').click()
+  cy.xpath('//div[@class="dropdown-wrapper"]/select').select(1)
+  cy.xpath('//button[text()="Upload logo"]').click()
+  cy.wait(20000)
+  cy.xpath('//div[@class="logo-upload-container scroller"]/div[1]/div[2]/button/span').click()
+  cy.xpath('//input[@id="file_uploader"]')
+  .selectFile('"D:/apache-jmeter-5.5/bin/PROJ/LogoTool/Logo/fila.eps"', { force: true })
+  cy.wait(20000)
+  cy.xpath('//div[@class="monocolor-components"]/label/span').click()
+  cy.xpath('//div[@class="le-wrap-color-field-wrapper "]/div[1]').click()
+  cy.wait(20000)
+  cy.xpath('//div[@class="le-pc-wrap"]/div[1]/div[1]/div[2]').click()
+})
