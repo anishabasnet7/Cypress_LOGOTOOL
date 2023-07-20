@@ -3,7 +3,7 @@ it.only('login test', function(){
     // returning false here prevents Cypress from failing the test
     return false
   })
-  cy.viewport(1920, 1080)
+  cy.viewport(2000, 2000)
   cy.visit("https://uat.pfconcept.com/en_nl/")
   cy.xpath('//ul[@class="account-nav "]/li/a').click()
   cy.get('#email').click().type('logotooltest@javra.com')
