@@ -5,6 +5,8 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: "https://ecommerce-playground.lambdatest.io",
+    baseUrl: "https://uat.pfconcept.com/en_cz/",
+    viewportHeight: 1080,
+    viewportWidth: 1920,
   },
 });
