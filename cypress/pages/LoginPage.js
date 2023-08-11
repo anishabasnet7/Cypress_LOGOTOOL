@@ -1,12 +1,16 @@
 class LoginPage {
   navigate() {
-    cy.visit("https://uat.pfconcept.com/en_cz/");
+    cy.visit("https://uat.pfconcept.com/en_cz");
   }
   clickSignin() {
-    return cy.get(".has-pf-drop-down > .icon").should("be.visible");
+    return cy
+      .xpath(
+        "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]"
+      )
+      .should("be.visible");
   }
   enterEmail() {
-    return cy.get("#email");
+    return cy.get("#email", { timeout: 10000 });
   }
   enterPassword() {
     return cy.get("#pass");

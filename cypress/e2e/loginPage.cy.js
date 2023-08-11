@@ -11,7 +11,7 @@ describe("Cypress POM Test Suite", function () {
     login.navigate();
     login.clickSignin().click();
     login.enterEmail().type(this.testdata.username);
-    cy.wait(5000);
+    //cy.wait(5000);
     login.enterPassword().click().type(this.testdata.password);
     login.submit().click();
     cy.url().should("be.equal", this.testdata.adminUrl);
