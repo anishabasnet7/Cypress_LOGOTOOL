@@ -1,6 +1,9 @@
 class Search {
-  clickSearch() {
+  typeSearchInput() {
     return cy.get("#search");
+  }
+  clickSearchButton() {
+    return cy.get('button[title="Search"]').click();
   }
 }
 

@@ -6,6 +6,7 @@ describe("Search functionality with login", () => {
   });
   it("Should search the given item(s)", function () {
     const search = new Search();
-    search.clickSearch().type("12018102");
+    search.typeSearchInput().type("12018102");
+    search.clickSearchButton();
   });
 });
