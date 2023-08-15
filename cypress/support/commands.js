@@ -9,10 +9,17 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
+Cypress.Commands.add("login", () => {
+  cy.fixture("credentials").then((credentials) => {
+    cy.visit(credentials.adminUrl);
+    cy.xpath(
+      "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]"
+    ).click();
+    cy.get("#email", { timeout: 10000 }).type(credentials.username);
+    cy.get("#pass").type(credentials.password);
+    cy.get("#send2").click();
+  });
+});
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //

@@ -1,5 +1,4 @@
 import LoginPage from "../pages/LoginPage";
-const loginpage = new LoginPage();
 describe("Cypress POM Test Suite", function () {
   before(function () {
     cy.fixture("credentials").then(function (testdata) {
