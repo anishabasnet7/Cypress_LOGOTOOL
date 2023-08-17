@@ -6,5 +6,4 @@ class Search {
     return cy.get('button[title="Search"]').click();
   }
 }
-
 module.exports = Search;
