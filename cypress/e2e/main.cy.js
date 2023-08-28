@@ -1,16 +1,18 @@
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
-describe("Search functionality with login", () => {
+import SelectPrinting from "../pages/SelectPrinting,js";
+describe("Login", () => {
   before(() => {
     // Log in before each test case
     cy.login();
   });
-  it("Should search the given item(s)", function () {
+  it("Happy Flow", function () {
+    //Search item
     const search = new Search();
     search.typeSearchInput().type("38029010");
     search.clickSearchButton();
     cy.wait(10000);
-
+    //Enter Quantity
     const enterQuantity = new EnterQuantity();
     enterQuantity.listQuantity().then((inputFields) => {
       inputFields.each((inputField, index) => {
@@ -34,5 +36,8 @@ describe("Search functionality with login", () => {
         cy.log("No enabled input fields found.");
       }
     });
+    //Select Printing
+    const selectPrinting = new SelectPrinting();
+    selectPrinting.clickSelectPrinting();
   });
 });

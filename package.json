@@ -6,8 +6,8 @@
     "chromeWebSecurity": false,
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "cypress:run": "cypress run",
-        "cypress:open": "cypress open"
+        "crun": "cypress run",
+        "copen": "cypress open"
     },
     "author": "",
     "license": "ISC",
