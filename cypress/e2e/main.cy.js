@@ -9,7 +9,7 @@ describe("Login", () => {
   it("Happy Flow", function () {
     //Search item
     const search = new Search();
-    search.typeSearchInput().type("38029010");
+    search.typeSearchInput().type("madras"); //38029010
     search.clickSearchButton();
     cy.wait(10000);
     //Enter Quantity
@@ -33,11 +33,29 @@ describe("Login", () => {
         cy.get(enabledInputFields).eq(0).type(quantity);
         cy.log(`Entered ${quantity} into the quantity field`);
       } else {
-        cy.log("No enabled input fields found.");
+        cy.log(`No enabled input fields found.`);
       }
     });
     //Select Printing
     const selectPrinting = new SelectPrinting();
     selectPrinting.clickSelectPrinting();
+    // Get the list of method headers
+    cy.get(".method-header").each(($methodHeader, index) => {
+      cy.log(`Method Header ${index + 1}: ${$methodHeader.text()}`);
+    });
+    // Get the total count of method-header elements
+    cy.get(".method-header")
+      .its("length")
+      .then((methodCount) => {
+        const randomIndex = Cypress._.random(0, methodCount - 1);
+        // Select and click on the method at the random index
+        cy.get(".method-header")
+          .eq(randomIndex)
+          .then(($selectedMethodHeader) => {
+            const selectedMethodText = $selectedMethodHeader.text();
+            cy.log(`Selected Method: ${selectedMethodText}`);
+            $selectedMethodHeader.click();
+          });
+      });
   });
 });
