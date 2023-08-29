@@ -9,7 +9,7 @@ describe("Login", () => {
   it("Happy Flow", function () {
     //Search item
     const search = new Search();
-    search.typeSearchInput().type("madras"); //38029010
+    search.typeSearchInput().type("38029010"); //38029010
     search.clickSearchButton();
     cy.wait(10000);
     //Enter Quantity
@@ -55,6 +55,33 @@ describe("Login", () => {
             const selectedMethodText = $selectedMethodHeader.text();
             cy.log(`Selected Method: ${selectedMethodText}`);
             $selectedMethodHeader.click();
+          });
+      });
+    //Select Position
+    cy.xpath("//div[@class='option-header']//span[@class='label']").each(
+      ($selector, index) => {
+        cy.log(`Positions ${index + 1}: ${$selector.text()}`);
+      }
+    );
+    cy.xpath(
+      "//div[@class='option-header']//span[contains(@class, 'selector')]"
+    )
+      .its("length")
+      .then((positionCount) => {
+        const randomIndex = Cypress._.random(0, positionCount - 1);
+        // Select and click on the method at the random index
+        cy.xpath(
+          "//div[@class='option-header']//span[contains(@class, 'selector')]"
+        )
+          .eq(randomIndex)
+          .then(($selectedPosition) => {
+            $selectedPosition.click();
+            // Log the label of the selected position
+            const label = $selectedPosition
+              .closest(".option-header")
+              .find(".label")
+              .text();
+            cy.log(`Selected Position Label: ${label}`);
           });
       });
   });
