@@ -84,5 +84,18 @@ describe("Login", () => {
             cy.log(`Selected Position Label: ${label}`);
           });
       });
+    //Select numbers of color allowed
+    cy.xpath('//div[@class="dropdown-wrapper"]/select')
+      .find("option:not(:first-child)") // Exclude the first option
+      .then(($options) => {
+        const randomIndex = Cypress._.random(0, $options.length - 1);
+        const randomOption = $options[randomIndex]; // Get the random option element
+        const randomValue = Cypress.$(randomOption).val(); // Get the value of the random option
+        cy.xpath('//div[@class="dropdown-wrapper"]/select').select(randomValue);
+        cy.xpath('//div[@class="dropdown-wrapper"]/select').should(
+          "have.value",
+          randomValue
+        ); // Assert that the selected option value matches the random value
+      });
   });
 });
