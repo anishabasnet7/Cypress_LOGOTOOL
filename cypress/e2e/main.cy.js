@@ -1,17 +1,19 @@
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
-import SelectPrinting from "../pages/SelectPrinting,js";
+import SelectPrinting from "../pages/SelectPrinting";
 describe("Login", () => {
   before(() => {
     // Log in before each test case
     cy.login();
   });
+
   it("Happy Flow", function () {
     //Search item
     const search = new Search();
-    search.typeSearchInput().type("38029010"); //38029010
+    search.typeSearchInput().type("38029010");
     search.clickSearchButton();
-    cy.wait(10000);
+    cy.wait(5000);
+
     //Enter Quantity
     const enterQuantity = new EnterQuantity();
     enterQuantity.listQuantity().then((inputFields) => {
@@ -36,19 +38,17 @@ describe("Login", () => {
         cy.log(`No enabled input fields found.`);
       }
     });
+
     //Select Printing
     const selectPrinting = new SelectPrinting();
     selectPrinting.clickSelectPrinting();
-    // Get the list of method headers
     cy.get(".method-header").each(($methodHeader, index) => {
       cy.log(`Method Header ${index + 1}: ${$methodHeader.text()}`);
     });
-    // Get the total count of method-header elements
     cy.get(".method-header")
       .its("length")
       .then((methodCount) => {
         const randomIndex = Cypress._.random(0, methodCount - 1);
-        // Select and click on the method at the random index
         cy.get(".method-header")
           .eq(randomIndex)
           .then(($selectedMethodHeader) => {
@@ -57,45 +57,46 @@ describe("Login", () => {
             $selectedMethodHeader.click();
           });
       });
+
     //Select Position
     cy.xpath("//div[@class='option-header']//span[@class='label']").each(
       ($selector, index) => {
-        cy.log(`Positions ${index + 1}: ${$selector.text()}`);
+        cy.log(`Position ${index + 1}: ${$selector.text()}`);
       }
     );
+    //Check if the selected position exists
     cy.xpath(
-      "//div[@class='option-header']//span[contains(@class, 'selector')]"
-    )
-      .its("length")
-      .then((positionCount) => {
-        const randomIndex = Cypress._.random(0, positionCount - 1);
-        // Select and click on the method at the random index
+      "count(//div[@class='option-header']//span[contains(@class, 'selector selected')])"
+    ).then((count) => {
+      if (count) {
+        cy.log(`1st method is selected`);
+      } else {
         cy.xpath(
-          "//div[@class='option-header']//span[contains(@class, 'selector')]"
-        )
-          .eq(randomIndex)
-          .then(($selectedPosition) => {
-            $selectedPosition.click();
-            // Log the label of the selected position
-            const label = $selectedPosition
-              .closest(".option-header")
-              .find(".label")
-              .text();
-            cy.log(`Selected Position Label: ${label}`);
-          });
-      });
+          "(//div[@class='option-header']//span[contains(@class, 'selector')])[1]"
+        ).click();
+      }
+    });
+
     //Select numbers of color allowed
     cy.xpath('//div[@class="dropdown-wrapper"]/select')
-      .find("option:not(:first-child)") // Exclude the first option
+      .find("option:not(:first-child)")
       .then(($options) => {
         const randomIndex = Cypress._.random(0, $options.length - 1);
-        const randomOption = $options[randomIndex]; // Get the random option element
-        const randomValue = Cypress.$(randomOption).val(); // Get the value of the random option
+        const randomOption = $options[randomIndex];
+        const randomValue = Cypress.$(randomOption).val();
         cy.xpath('//div[@class="dropdown-wrapper"]/select').select(randomValue);
         cy.xpath('//div[@class="dropdown-wrapper"]/select').should(
           "have.value",
           randomValue
-        ); // Assert that the selected option value matches the random value
+        );
       });
+    cy.wait(20000);
+    // "Upload logo" button
+    const clickUpload = () => {
+      cy.xpath(
+        "//button[contains(@data-bind, 'Upload Logo') and text()='Upload logo']"
+      ).click({ force: true });
+    };
+    clickUpload();
   });
 });

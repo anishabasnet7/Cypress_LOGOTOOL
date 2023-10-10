@@ -1,6 +1,6 @@
 class LoginPage {
   navigate() {
-    cy.visit("https://uat.pfconcept.com/en_cz");
+    cy.visit("https://pfconcept.com/en_cz");
   }
   clickSignin() {
     return cy
