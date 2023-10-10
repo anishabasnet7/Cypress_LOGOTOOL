@@ -1,14 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
+require("cypress-xpath");
 Cypress.Commands.add("login", () => {
   cy.fixture("credentials").then((credentials) => {
     cy.visit(credentials.adminUrl);
@@ -20,13 +10,18 @@ Cypress.Commands.add("login", () => {
     cy.get("#send2").click();
   });
 });
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("numberOfColorsAllowed", () => {
+  cy.xpath('//div[@class="dropdown-wrapper"]/select')
+    .find("option:not(:first-child)")
+    .then(($options) => {
+      const randomIndex = Cypress._.random(0, $options.length - 1);
+      const randomOption = $options[randomIndex];
+      const randomValue = Cypress.$(randomOption).val();
+      cy.xpath('//div[@class="dropdown-wrapper"]/select').select(randomValue);
+      cy.xpath('//div[@class="dropdown-wrapper"]/select').should(
+        "have.value",
+        randomValue
+      );
+    });
+});

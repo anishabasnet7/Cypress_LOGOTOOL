@@ -1,9 +1,10 @@
+import "../support/commands";
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrinting";
+import ClickUpload from "../pages/ClickUpload";
 describe("Login", () => {
   before(() => {
-    // Log in before each test case
     cy.login();
   });
 
@@ -12,7 +13,7 @@ describe("Login", () => {
     const search = new Search();
     search.typeSearchInput().type("38029010");
     search.clickSearchButton();
-    cy.wait(5000);
+    cy.wait(10000);
 
     //Enter Quantity
     const enterQuantity = new EnterQuantity();
@@ -78,25 +79,10 @@ describe("Login", () => {
     });
 
     //Select numbers of color allowed
-    cy.xpath('//div[@class="dropdown-wrapper"]/select')
-      .find("option:not(:first-child)")
-      .then(($options) => {
-        const randomIndex = Cypress._.random(0, $options.length - 1);
-        const randomOption = $options[randomIndex];
-        const randomValue = Cypress.$(randomOption).val();
-        cy.xpath('//div[@class="dropdown-wrapper"]/select').select(randomValue);
-        cy.xpath('//div[@class="dropdown-wrapper"]/select').should(
-          "have.value",
-          randomValue
-        );
-      });
-    cy.wait(20000);
+    cy.numberOfColorsAllowed();
+
     // "Upload logo" button
-    const clickUpload = () => {
-      cy.xpath(
-        "//button[contains(@data-bind, 'Upload Logo') and text()='Upload logo']"
-      ).click({ force: true });
-    };
-    clickUpload();
+    const clickUpload = new ClickUpload();
+    clickUpload.clickUploadButton();
   });
 });
