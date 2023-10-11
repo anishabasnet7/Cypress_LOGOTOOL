@@ -1,4 +1,5 @@
 require("cypress-xpath");
+
 Cypress.Commands.add("login", () => {
   cy.fixture("credentials").then((credentials) => {
     cy.visit(credentials.adminUrl);
@@ -8,6 +9,25 @@ Cypress.Commands.add("login", () => {
     cy.get("#email", { timeout: 10000 }).type(credentials.username);
     cy.get("#pass").type(credentials.password);
     cy.get("#send2").click();
+  });
+});
+
+Cypress.Commands.add("selectPosition", () => {
+  cy.xpath("//div[@class='option-header']//span[@class='label']").each(
+    ($selector, index) => {
+      cy.log(`Position ${index + 1}: ${$selector.text()}`);
+    }
+  );
+  cy.xpath(
+    "count(//div[@class='option-header']//span[contains(@class, 'selector selected')])"
+  ).then((count) => {
+    if (count) {
+      cy.log(`1st method is selected`);
+    } else {
+      cy.xpath(
+        "(//div[@class='option-header']//span[contains(@class, 'selector')])[2]"
+      ).click();
+    }
   });
 });
 

@@ -1,10 +1,12 @@
 import LoginPage from "../pages/LoginPage";
+
 describe("Cypress POM Test Suite", function () {
   before(function () {
     cy.fixture("credentials").then(function (testdata) {
       this.testdata = testdata;
     });
   });
+
   it("Login with valid credentials", function () {
     const login = new LoginPage();
     login.navigate();
