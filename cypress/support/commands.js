@@ -1,4 +1,4 @@
-require("cypress-xpath");
+require("cypress-xpath"); //this is for main.cy.js
 
 Cypress.Commands.add("login", () => {
   cy.fixture("credentials").then((credentials) => {
