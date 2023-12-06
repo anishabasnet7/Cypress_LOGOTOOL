@@ -2,7 +2,7 @@ import "../support/commands";
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrinting";
-import ClickUpload from "../pages/ClickUpload";
+import { ClickUpload, SelectLogo } from "../pages/ClickUpload";
 describe("Login", () => {
   before(() => {
     cy.login();
@@ -36,5 +36,17 @@ describe("Login", () => {
     // Click Upload Logo button
     const clickUpload = new ClickUpload();
     clickUpload.clickUploadButton();
+
+    const clickLogoUpload = new SelectLogo();
+    clickLogoUpload.clickLogoUploadButton();
+
+    const logoPath = "NBC.pdf";
+    cy.fixture(logoPath).then((fileContent) => {
+      cy.get("input#file_uploader").attachFile({
+        fileContent: fileContent.toString(),
+        fileName: "NBC.pdf",
+        mimeType: "application/pdf",
+      });
+    });
   });
 });

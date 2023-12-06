@@ -6,4 +6,14 @@ class ClickUpload {
     ).click({ force: true });
   }
 }
-module.exports = ClickUpload;
+class SelectLogo {
+  clickLogoUploadButton() {
+    cy.xpath(
+      "//div[@class='upload-button']//button[@class='button-secondary']/span[text()='Upload']"
+    ).click({ force: true, multiple: true });
+  }
+}
+module.exports = {
+  ClickUpload,
+  SelectLogo,
+};

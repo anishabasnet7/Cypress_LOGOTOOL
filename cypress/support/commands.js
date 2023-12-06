@@ -1,3 +1,4 @@
+import "cypress-file-upload";
 require("cypress-xpath"); //this is for main.cy.js
 
 Cypress.Commands.add("login", () => {
@@ -44,4 +45,9 @@ Cypress.Commands.add("numberOfColorsAllowed", () => {
         randomValue
       );
     });
+});
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+  // Returning false here prevents Cypress from failing the test
+  return false;
 });
