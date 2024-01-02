@@ -2,7 +2,8 @@ import "../support/commands";
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrinting";
-import { ClickUpload, SelectLogo } from "../pages/ClickUpload";
+import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
+import Continue from "../pages/Continue";
 describe("Login", () => {
   before(() => {
     cy.login();
@@ -40,13 +41,13 @@ describe("Login", () => {
     const clickLogoUpload = new SelectLogo();
     clickLogoUpload.clickLogoUploadButton();
 
+    // Upload Logo
+    const browseLogo = new BrowseLogo();
     const logoPath = "NBC.pdf";
-    cy.fixture(logoPath).then((fileContent) => {
-      cy.get("input#file_uploader").attachFile({
-        fileContent: fileContent.toString(),
-        fileName: "NBC.pdf",
-        mimeType: "application/pdf",
-      });
-    });
+    browseLogo.uploadLogo(logoPath);
+
+    //Continue Ordering
+    // const continueButton = new Continue();
+    // continueButton.clickContinueButton();
   });
 });
