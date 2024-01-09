@@ -11,7 +11,6 @@ class SelectLogo {
     cy.xpath(
       "//div[@class='upload-button']//button[@class='button-secondary']/span[text()='Upload']"
     ).click({ force: true, multiple: true });
-    cy.wait(1000);
   }
 }
 // class SelectLogo {
@@ -38,10 +37,10 @@ class SelectLogo {
 // }
 class BrowseLogo {
   uploadLogo() {
-    const fileName = "NBC.pdf";
-    cy.get("input#file_uploader").attachFile(fileName);
+    const fileName = "../Cypress_LOGOTOOL/cypress/fixtures/NBC.pdf";
+    cy.wait(1000);
+    cy.get("input#file_uploader").selectFile(fileName, { force: true });
     cy.log("Logo file uploaded successfully");
-    //cy.xpath("//div[@class='monocolor-components']/label/span").click();
   }
 }
 

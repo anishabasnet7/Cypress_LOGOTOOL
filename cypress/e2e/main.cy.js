@@ -3,7 +3,7 @@ import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrinting";
 import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
-import Continue from "../pages/Continue";
+
 describe("Login", () => {
   before(() => {
     cy.login();
@@ -43,8 +43,7 @@ describe("Login", () => {
 
     // Upload Logo
     const browseLogo = new BrowseLogo();
-    const logoPath = "NBC.pdf";
-    browseLogo.uploadLogo(logoPath);
+    browseLogo.uploadLogo();
 
     //Continue Ordering
     // const continueButton = new Continue();
