@@ -3,7 +3,7 @@ import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrinting";
 import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
-
+import Continue from "../pages/Continue";
 describe("Login", () => {
   before(() => {
     cy.login();
@@ -46,7 +46,7 @@ describe("Login", () => {
     browseLogo.uploadLogo();
 
     //Continue Ordering
-    // const continueButton = new Continue();
-    // continueButton.clickContinueButton();
+    const continueButton = new Continue();
+    continueButton.clickContinueButton();
   });
 });
