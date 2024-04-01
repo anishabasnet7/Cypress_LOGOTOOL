@@ -44,9 +44,10 @@ describe("Login", () => {
     // Upload Logo
     const browseLogo = new BrowseLogo();
     browseLogo.uploadLogo();
+    cy.wait(20000);
 
     //Continue Ordering
     const continueButton = new Continue();
-    continueButton.clickContinueButton();
+    continueButton.performActions();
   });
 });
