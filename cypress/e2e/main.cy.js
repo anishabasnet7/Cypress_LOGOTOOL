@@ -4,6 +4,9 @@ import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrintTechnique";
 import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
 import Continue from "../pages/ContinueWithOrder";
+import DesignSave from "../pages/DesignSave";
+import AddCart from "../pages/AddCart";
+
 describe("Login", () => {
   before(() => {
     cy.login();
@@ -49,5 +52,13 @@ describe("Login", () => {
     //Continue Ordering
     const continueButton = new Continue();
     continueButton.performActions();
+
+    //Design Save
+    const designSaving = new DesignSave();
+    designSaving.continueDesign();
+
+    //Add to Cart
+    const addtoCart = new AddCart();
+    addtoCart.clickAddCart();
   });
 });
