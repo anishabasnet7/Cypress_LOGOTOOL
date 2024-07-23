@@ -18,7 +18,7 @@ class EnterQuantity {
         (index, inputField) => !Cypress.$(inputField).is(":disabled")
       );
       if (enabledInputFields.length > 0) {
-        this.enterQuantityValue(enabledInputFields.eq(0), "5");
+        this.enterQuantityValue(enabledInputFields.eq(0), "1");
       } else {
         cy.log(`No enabled input fields found.`);
       }

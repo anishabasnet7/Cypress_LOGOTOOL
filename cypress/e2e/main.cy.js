@@ -1,7 +1,7 @@
 import "../support/commands";
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
-import SelectPrinting from "../pages/SelectPrinting";
+import SelectPrinting from "../pages/SelectPrintTechnique";
 import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
 import Continue from "../pages/Continue";
 describe("Login", () => {
@@ -14,7 +14,7 @@ describe("Login", () => {
     const search = new Search();
     search.typeSearchInput().type("38029010");
     search.clickSearchButton();
-    cy.wait(10000);
+    cy.wait(20000);
 
     // Enter Quantity
     const enterQuantity = new EnterQuantity();
@@ -44,7 +44,7 @@ describe("Login", () => {
     // Upload Logo
     const browseLogo = new BrowseLogo();
     browseLogo.uploadLogo();
-    cy.wait(20000);
+    cy.wait(10000);
 
     //Continue Ordering
     const continueButton = new Continue();

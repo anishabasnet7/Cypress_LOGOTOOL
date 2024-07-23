@@ -3,7 +3,7 @@ class Search {
     return cy.get("#search");
   }
   clickSearchButton() {
-    return cy.get('button[title="Search"]').click();
+    return cy.xpath('//button[@title="Search"][2]').click();
   }
 }
 module.exports = Search;

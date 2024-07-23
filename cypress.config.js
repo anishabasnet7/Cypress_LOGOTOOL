@@ -6,7 +6,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl: "https://pfconcept.com/en_nl/",
-    viewportHeight: 2000,
-    viewportWidth: 1800,
+    viewportWidth: 1500,
+    viewportHeight: 1000,
   },
 });

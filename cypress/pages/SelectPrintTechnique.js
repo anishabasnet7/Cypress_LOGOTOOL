@@ -2,7 +2,7 @@ class SelectPrinting {
   clickSelectPrinting() {
     return cy
       .xpath(
-        "//div[contains(@class, 'footer-actions')]/button[text() = 'Select printing']"
+        "//div[contains(@class, 'footer-actions')]/button[text() = 'Select print technique']"
       )
       .click();
   }
