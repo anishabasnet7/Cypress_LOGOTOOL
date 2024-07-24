@@ -26,10 +26,8 @@ jobs:
         continue-on-error: true
         id: cypress_tests
 
-      - name: Upload Cypress Test Results
+      - name: Upload Cypress Test Videos
         uses: actions/upload-artifact@v3
         with:
-          name: cypress-logs
-          path: cypress/videos/**/*
-
-      # Add more steps here if needed
+          name: cypress-videos
+          path: cypress/videos/**/*.mp4
