@@ -6,6 +6,7 @@ import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
 import Continue from "../pages/ContinueWithOrder";
 import DesignSave from "../pages/DesignSave";
 import AddCart from "../pages/AddCart";
+import EProof from "../pages/EProof";
 
 describe("Login", () => {
   before(() => {
@@ -57,6 +58,10 @@ describe("Login", () => {
     const designSaving = new DesignSave();
     designSaving.continueDesign();
 
+    // Download eProof
+    const eProof = new EProof();
+    eProof.downloadEProof();
+    
     //Add to Cart
     const addtoCart = new AddCart();
     addtoCart.clickAddCart();

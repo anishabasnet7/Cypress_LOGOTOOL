@@ -8,6 +8,8 @@ class DesignSave {
             if ($element.is(':visible')) {
               cy.wrap($element).click();
               cy.log('Continue button clicked. Non digital methods.');
+              //Embroidery Methods taking longer time
+              //cy.wait(15000); 
             } else {
               cy.log('Not continued for non-digital methods');
             }
