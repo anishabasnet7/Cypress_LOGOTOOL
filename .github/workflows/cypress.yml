@@ -2,7 +2,7 @@ name: Cypress Tests
 
 on:
   schedule:
-    - cron: '10 10 * * *' # Adjust the cron schedule as needed
+    - cron: '*/5 * * * *' # Adjust the cron schedule as needed
   workflow_dispatch:
 
 jobs:
