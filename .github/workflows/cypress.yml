@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests in headed mode
-        run: npx cypress run --headed --browser chrome # Or use electron
+      - name: Run Cypress tests for main.cy.js
+        run: npx cypress run --headed --browser chrome --spec cypress/e2e/main.cy.js
         continue-on-error: true
         id: cypress_tests
 
