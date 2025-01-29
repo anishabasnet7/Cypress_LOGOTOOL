@@ -9,7 +9,7 @@ class ClickUpload {
 class SelectLogo {
   clickLogoUploadButton() {
     cy.xpath(
-      "//div[@class='upload-button']//button[@class='button-secondary']/span[text()='Upload']"
+      "//div[@class='logo-content scroller show']/div[1]/div[1]/div[2]/button/span"
     ).click({ force: true, multiple: true });
   }
 }
@@ -38,14 +38,18 @@ class SelectLogo {
 class BrowseLogo {
   uploadLogo() {
     const fileName = "../Cypress_LOGOTOOL/cypress/fixtures/NBC.pdf";
-    cy.wait(1000);
-    cy.get("input#file_uploader").selectFile(fileName, { force: true });
+    cy.wait(5000);
+    cy.xpath("(//input[@id='file_uploader'])[2]").selectFile(fileName, { force: true });
     cy.log("Logo file uploaded successfully");
+    cy.xpath("//div[@class='loading']", { timeout: 20000 }).should('be.visible');
+    cy.xpath("//div[@class='loading']", { timeout: 20000 }).should('not.exist'); 
+    }
   }
-}
-
+    
 module.exports = {
   ClickUpload,
   SelectLogo,
   BrowseLogo,
 };
+
+

@@ -5,8 +5,7 @@ Cypress.Commands.add("login", () => {
   cy.fixture("credentials").then((credentials) => {
     cy.visit(credentials.adminUrl);
     cy.xpath(
-      "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]"
-    ).click();
+      "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]", { timeout: 10000 }).click();
     cy.get("#email", { timeout: 10000 }).type(credentials.username);
     cy.get("#pass").type(credentials.password);
     cy.get("#send2").click();

@@ -16,7 +16,7 @@ describe("Login", () => {
   it("Happy Flow", function () {
     // Search item
     const search = new Search();
-    search.typeSearchInput().type("38029010");
+    search.typeSearchInput().type("38028210");
     search.clickSearchButton();
     cy.wait(20000);
 
@@ -48,9 +48,8 @@ describe("Login", () => {
     // Upload Logo
     const browseLogo = new BrowseLogo();
     browseLogo.uploadLogo();
-    cy.wait(10000);
 
-    //Continue Ordering
+    // Continue Ordering
     const continueButton = new Continue();
     continueButton.performActions();
 
