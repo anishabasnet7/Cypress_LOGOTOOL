@@ -1,6 +1,6 @@
 class DesignSave {
     continueDesign() {
-      cy.wait(15000);
+      cy.wait(1000*15);
       // Use cy.get() to get the body and then search for the element within it
       cy.get('body').then($body => {
         if ($body.find('div.footer button.button-secondary span:contains("Continue")').length > 0) {
@@ -9,7 +9,7 @@ class DesignSave {
               cy.wrap($element).click();
               cy.log('Continue button clicked. Non digital methods.');
               //Embroidery Methods taking longer time
-              //cy.wait(15000); 
+              //cy.wait(1000*15); 
             } else {
               cy.log('Not continued for non-digital methods');
             }
@@ -17,7 +17,7 @@ class DesignSave {
         } else {
           // Element does not exist
           cy.log('Continue button not available. Digital Methods');
-          cy.wait(15000);
+          cy.wait(1000*15);
         }
       });
     }

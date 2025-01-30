@@ -1,6 +1,6 @@
 class ClickUpload {
   clickUploadButton() {
-    cy.wait(20000);
+    cy.wait(1000 * 20);
     cy.xpath(
       "//button[contains(@data-bind, 'Upload Logo') and text()='Upload logo']"
     ).click({ force: true });
@@ -15,7 +15,7 @@ class SelectLogo {
 }
 // class SelectLogo {
 // async clickLogoUploadButton() {
-//   const timeout = 30000; // Set the maximum time limit in milliseconds
+//   const timeout = 1000 *30; // Set the maximum time limit in milliseconds
 //   const startTime = new Date().getTime();
 //   while (true) {
 //     try {
@@ -35,21 +35,10 @@ class SelectLogo {
 //   }
 // }
 // }
-class BrowseLogo {
-  uploadLogo() {
-    const fileName = "../Cypress_LOGOTOOL/cypress/fixtures/NBC.pdf";
-    cy.wait(5000);
-    cy.xpath("(//input[@id='file_uploader'])[2]").selectFile(fileName, { force: true });
-    cy.log("Logo file uploaded successfully");
-    cy.xpath("//div[@class='loading']", { timeout: 20000 }).should('be.visible');
-    cy.xpath("//div[@class='loading']", { timeout: 20000 }).should('not.exist'); 
-    }
-  }
-    
+
+
 module.exports = {
   ClickUpload,
   SelectLogo,
-  BrowseLogo,
 };
-
 

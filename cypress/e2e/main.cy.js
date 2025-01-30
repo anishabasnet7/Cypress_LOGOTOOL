@@ -2,7 +2,8 @@ import "../support/commands";
 import Search from "../pages/Search";
 import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrintTechnique";
-import { ClickUpload, SelectLogo, BrowseLogo } from "../pages/ClickUpload";
+import { ClickUpload, SelectLogo } from "../pages/ClickUpload";
+import BrowseLogo from "../pages/BrowseLogo";
 import Continue from "../pages/ContinueWithOrder";
 import DesignSave from "../pages/DesignSave";
 import AddCart from "../pages/AddCart";
@@ -14,11 +15,11 @@ describe("Login", () => {
   });
 
   it("Happy Flow", function () {
-    // Search item
-    const search = new Search();
-    search.typeSearchInput().type("38028210");
-    search.clickSearchButton();
-    cy.wait(20000);
+    // // Search item
+    // const search = new Search();
+    // search.typeSearchInput().type("19549655");
+    // search.clickSearchButton();
+    cy.wait(1000 * 20);
 
     // Enter Quantity
     const enterQuantity = new EnterQuantity();
@@ -45,7 +46,7 @@ describe("Login", () => {
     const clickLogoUpload = new SelectLogo();
     clickLogoUpload.clickLogoUploadButton();
 
-    // Upload Logo
+    // Browse Logo
     const browseLogo = new BrowseLogo();
     browseLogo.uploadLogo();
 

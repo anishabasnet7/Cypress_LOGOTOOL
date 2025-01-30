@@ -4,8 +4,9 @@ require("cypress-xpath"); //this is for main.cy.js
 Cypress.Commands.add("login", () => {
   cy.fixture("credentials").then((credentials) => {
     cy.visit(credentials.adminUrl);
+    cy.wait(1000*5);
     cy.xpath(
-      "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]", { timeout: 10000 }).click();
+      "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]").click();
     cy.get("#email", { timeout: 10000 }).type(credentials.username);
     cy.get("#pass").type(credentials.password);
     cy.get("#send2").click();
