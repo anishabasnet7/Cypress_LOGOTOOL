@@ -3,20 +3,19 @@ const MoodScene = require("./MoodScene");
 class ThreeD {
   checkAndClickThreeD(clickContinueButton) {
     const threeDXPath = "//div[@class='application-tab  modal-preview']/div[2]";
+    cy.document().then((doc) => {
+      const threeDButton = doc.evaluate(threeDXPath, doc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
-    cy.xpath(threeDXPath).then((threeDButton) => {
-      if (threeDButton.length > 0) {
+      if (threeDButton) {
         cy.log("3D button found. Clicking it.");
-        cy.xpath(threeDXPath)
-          .click()
-          .then(() => {
-            cy.wait(1000 * 15);
-            MoodScene.clickMoodSceneButton(clickContinueButton);
-          });
-      } else {
-        cy.log("3D button not found. Looking for Mood Scene");
+        cy.xpath(threeDXPath).click();
+        cy.wait(15000);
         MoodScene.clickMoodSceneButton(clickContinueButton);
-      }
+      } 
+      else {
+        cy.log("3D button not found. Proceeding to Mood Scene.");
+        MoodScene.clickMoodSceneButton(clickContinueButton);
+       }
     });
   }
 }

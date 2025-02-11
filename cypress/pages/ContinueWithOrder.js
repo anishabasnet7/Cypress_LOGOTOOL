@@ -12,7 +12,6 @@ class Continue {
 
   performActions() {
     const eyeIconsXPath = "//div[@class='le-wrap-color-field-wrapper']/div[2]";
-
     const checkAndClick = () => {
       cy.xpath(
         "//button[contains(@class, 'button-primary') and contains(@title, '') and text()='Continue with ordering']"
@@ -31,7 +30,6 @@ class Continue {
               cy.xpath(eyeIconsXPath).eq(i).click();
               cy.wait(1000 *5);
               cy.log(`Clicked eye icon ${i + 1} of ${maxAttempts}`);
-
               cy.xpath(
                 "//button[contains(@class, 'button-primary') and contains(@title, '') and text()='Continue with ordering']"
               ).then((button) => {

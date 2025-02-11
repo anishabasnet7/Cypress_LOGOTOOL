@@ -1,4 +1,5 @@
 import "cypress-file-upload";
+import 'cypress-if';
 require("cypress-xpath"); //this is for main.cy.js
 
 Cypress.Commands.add("login", () => {
