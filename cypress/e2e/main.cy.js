@@ -4,8 +4,6 @@ import EnterQuantity from "../pages/EnterQuantity";
 import SelectPrinting from "../pages/SelectPrintTechnique";
 import { ClickUpload, SelectLogo } from "../pages/ClickUpload";
 import BrowseLogo from "../pages/BrowseLogo";
-import ThreeD from "../pages/3D";
-import MoodScene from "../pages/MoodScene";
 import Continue from "../pages/ContinueWithOrder";
 import DesignSave from "../pages/DesignSave";
 import AddCart from "../pages/AddCart";
@@ -53,8 +51,7 @@ describe("Login", () => {
     browseLogo.uploadLogo();
 
     // Continue Ordering
-    const continueButton = new Continue();
-    continueButton.performActions();
+    Continue.performActions();
 
     //Design Save
     const designSaving = new DesignSave();

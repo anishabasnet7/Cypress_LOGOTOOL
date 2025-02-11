@@ -1,3 +1,4 @@
+const ThreeD = require("./3D");
 class Continue {
   clickContinueButton() {
     cy.xpath(
@@ -18,18 +19,15 @@ class Continue {
       ).then((button) => {
         const isButtonDisabled = button.hasClass("disable");
         cy.log(`Is button disabled? ${isButtonDisabled}`);
-
         if (isButtonDisabled) {
           // If the button is disabled, click on the eye icon to enable it and then click the button
           cy.xpath(eyeIconsXPath).then((eyeIcons) => {
             const maxAttempts = eyeIcons.length;
             cy.log(`Total eye icons: ${maxAttempts}`);
-
             const clickEyeIcon = (i) => {
               if (i >= maxAttempts) {
                 return;
               }
-
               cy.xpath(eyeIconsXPath).eq(i).click();
               cy.wait(1000 *5);
               cy.log(`Clicked eye icon ${i + 1} of ${maxAttempts}`);
@@ -40,7 +38,7 @@ class Continue {
                 const isButtonDisabled = button.hasClass("disable");
                 cy.log(`Is button disabled? ${isButtonDisabled}`);
                 if (!isButtonDisabled) {
-                  this.clickContinueButton();
+                  ThreeD.checkAndClickThreeD(this.clickContinueButton);
                 } else {
                   clickEyeIcon(i + 1);
                 }
@@ -50,8 +48,8 @@ class Continue {
             clickEyeIcon(0);
           });
         } else {
-          // If the button is enabled, directly click it
-          this.clickContinueButton();
+          // If the button is enabled, check if 3D
+          ThreeD.checkAndClickThreeD(this.clickContinueButton);
         }
       });
     };
@@ -60,4 +58,4 @@ class Continue {
   }
 }
 
-module.exports = Continue;
+module.exports = new Continue();
