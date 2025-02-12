@@ -1,17 +1,17 @@
 import "cypress-file-upload";
 import 'cypress-if';
-require("cypress-xpath"); //this is for main.cy.js
+import {credentials} from'./credentials'
+
+require("cypress-xpath");
 
 Cypress.Commands.add("login", () => {
-  cy.fixture("credentials").then((credentials) => {
-    cy.visit(credentials.adminUrl);
+    cy.visit(credentials.urls.heroesShirt);
     cy.wait(1000*5);
     cy.xpath(
       "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]").click();
     cy.get("#email", { timeout: 10000 }).type(credentials.username);
     cy.get("#pass").type(credentials.password);
     cy.get("#send2").click();
-  });
 });
 
 Cypress.Commands.add("selectPosition", () => {
@@ -31,6 +31,7 @@ Cypress.Commands.add("selectPosition", () => {
       ).click();
     }
   });
+
 });
 
 Cypress.Commands.add("numberOfColorsAllowed", () => {
@@ -46,9 +47,11 @@ Cypress.Commands.add("numberOfColorsAllowed", () => {
         randomValue
       );
     });
+    
 });
 
 Cypress.on("uncaught:exception", (err, runnable) => {
   // Returning false here prevents Cypress from failing the test
   return false;
 });
+

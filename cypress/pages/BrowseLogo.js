@@ -1,6 +1,6 @@
 class BrowseLogo {
     uploadLogo() {
-        const fileName = "../Cypress_LOGOTOOL/cypress/fixtures/Activimax.pdf";
+        const fileName = "../Cypress_LOGOTOOL/cypress/fixtures/NBC.pdf";
         //cy.pause();
         cy.wait(1000 * 5);
         cy.xpath("(//input[@id='file_uploader'])[2]").selectFile(fileName, { force: true });
