@@ -5,7 +5,7 @@ import {credentials} from'./credentials'
 require("cypress-xpath");
 
 Cypress.Commands.add("login", () => {
-    cy.visit(credentials.urls.heroesShirt);
+    cy.visit(credentials.urls.pheebsBag);
     cy.wait(1000*5);
     cy.xpath(
       "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]").click();
