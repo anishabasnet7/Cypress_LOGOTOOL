@@ -2,10 +2,10 @@ import "cypress-file-upload";
 import 'cypress-if';
 import {credentials} from'./credentials'
 
-require("cypress-xpath"); //this is for main.cy.js
+require("cypress-xpath");
 
 Cypress.Commands.add("login", () => {
-    cy.visit(credentials.urls.madrasBag);
+    cy.visit(credentials.urls.heroesShirt);
     cy.wait(1000*5);
     cy.xpath(
       "//li[contains(@class, 'account-signin') and contains(@class, 'pf-dropdown-menu')]").click();
