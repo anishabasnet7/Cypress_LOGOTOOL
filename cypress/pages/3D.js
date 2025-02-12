@@ -21,4 +21,3 @@ class ThreeD {
 }
 
 module.exports = new ThreeD();
-
