@@ -12,7 +12,7 @@ class MoodScene {
           clickContinueButton();
         } 
       else {
-        cy.log("Mood Scene button also not found. Clicking Continue.");
+        cy.log("Clicking Continue.");
         clickContinueButton();
       }
     });
