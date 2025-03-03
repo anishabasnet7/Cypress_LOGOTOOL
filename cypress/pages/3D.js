@@ -26,21 +26,21 @@ class ThreeD {
         cy.xpath("(//div[@class='static-images wrap']/div[@class='static-image '])[1]").click();
         cy.log("First Background selected.");
         cy.xpath("//div[@class='share-tab']/button[1]")
-        .should('be.visible', { timeout: 1000 * 60})
+        .should('be.visible', { timeout: 1000 * 15})
         .click();   
         cy.log("Share and Download button opened.");   
         cy.xpath("(//div[@class='download-section'])[1]//div[contains(@class, 'button-secondary')]")
-        .should('be.visible', { timeout: 1000 * 60})
+        .should('be.visible', { timeout: 1000 * 15})
         .click();
         cy.log("3D Image downloaded."); 
         cy.xpath("//div[@class='loading-overlay']/div", { timeout: 1000 * 15}).should('not.exist');
         cy.xpath("(//div[@class='download-section'])[2]//div[contains(@class, 'button-secondary')]")
-        .should('be.visible', { timeout: 1000 * 60})
+        .should('be.visible', { timeout: 1000 * 15})
         .click();
         cy.log("Animated video downloaded."); 
         cy.xpath("//div[@class='loading-overlay']/div", { timeout: 1000 * 15}).should('not.exist');
         cy.xpath("//div[@class='logotool-share-link-container']/div[1]")
-        .should('be.visible', { timeout: 1000 * 60})
+        .should('be.visible', { timeout: 1000 * 15})
         .click();
         cy.log("Share and Download button closed."); 
         MoodScene.clickMoodSceneButton(clickContinueButton);
