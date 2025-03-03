@@ -8,7 +8,14 @@ class MoodScene {
         if (moodSceneButton) {
           cy.log("Mood Scene found. Clicking it.");
           cy.xpath(moodSceneXPath).click();
-          cy.wait(15000);
+          cy.wait(1000 * 5);
+          cy.xpath("//div[@class='mood-thumbnail '][1]").click();
+          cy.wait(1000);
+          cy.xpath("//div[@class='loading-overlay']/div", { timeout: 1000 * 15}).should('not.exist');
+          cy.xpath("//div[@class='mood-left-sidebar']/button").click();
+          cy.wait(1000);
+          cy.xpath("//div[@class='loading-overlay']/div", { timeout: 1000 * 15}).should('not.exist');
+          //cy.wait(1000*15);
           clickContinueButton();
         } 
       else {
